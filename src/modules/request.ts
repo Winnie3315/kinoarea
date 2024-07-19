@@ -12,6 +12,6 @@ export const getData = async (path) => {
 
         return res
     } catch(error) {
-        alert(error.message)
+        return
     }
 }

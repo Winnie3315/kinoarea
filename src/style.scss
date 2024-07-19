@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: darkblue;
+    background-color: #1E2538;
 }
 a{
     text-decoration: 0;
@@ -36,12 +36,12 @@ header{
 }
 
 .backdrop {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    height: 100vh;
-    background: url(/public/images/bg_test.jpg) no-repeat center / cover;
+    height: 600px;
+    background: url() no-repeat center / cover;
     opacity: 0.5;
     z-index: -1;
     transition: .5s ease;
@@ -133,6 +133,10 @@ header{
         .genres {
             display: flex;
             gap: 20px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            text-wrap: nowrap;
+            max-width: 700px;
 
             .genre {
                 color: #979797;
@@ -170,6 +174,7 @@ header{
                 padding: 3px 10px;
                 border-radius: 5px;
                 background-color: #89CB36;
+                color: white;
 
                 & span {
                     font-size: 14px;
@@ -179,6 +184,7 @@ header{
             .movie_name {
                 margin-bottom: 5px;
                 font-size: 16px;
+                color: white;
             }
 
             .genres {
@@ -208,6 +214,56 @@ header{
 }
 
 .trailer{
+    .trailers {
+        display: flex;
+        gap: 20px;
+        overflow: auto;
+        scrollbar-width: none; 
+    
+        .trailer-item {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 100%;
+            position: relative;
+    
+            img {
+                max-width: 320px;
+                height: 280px;
+                background-size: cover;
+                background-position: center;
+                position: relative;
+                border-radius: 10px;
+    
+
+            }
+            .play {
+                position: absolute;
+                bottom: 50%;
+                right: 50%;
+                width: 40px;
+                height: 40px;
+                
+                border-top: 17px solid transparent;
+                border-bottom: 17px solid transparent;
+                cursor: pointer;
+            }
+    
+            h3 {
+                font-family: Qanelas;
+                font-size: 20px;
+                font-weight: 900;
+                line-height: 25.48px;
+                text-align: center;
+                color: white;
+                margin: 10px 0 0 0;
+            }
+        }
+    }
     .trailer-info{
         display: flex;
         justify-content: space-between;
@@ -234,15 +290,7 @@ header{
             font-weight: 900;
             line-height: 57.33px;           
         }
-        .trailer-item{
-            font-family: Qanelas;
-            font-size: 20px;
-            font-weight: 900;
-            line-height: 25.48px;
-            text-align: left;
-            color: white;
 
-        }
     }
 }
 
@@ -282,4 +330,143 @@ header{
             }
         }
     }
+    .popular-playing{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 33px 23px;
+        .movie_card {
+            position: relative;
+            cursor: pointer;
+
+            .movie_poster {
+                border-radius: 10px;
+                width: 100%;
+                height: 400px;
+            }
+
+            .score {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                padding: 3px 10px;
+                border-radius: 5px;
+                background-color: #89CB36;
+                color: white;
+
+                & span {
+                    font-size: 14px;
+                }
+            }
+
+            .movie_name {
+                margin-bottom: 5px;
+                font-size: 16px;
+                color: white;
+            }
+
+        }
+
+    }
 }
+
+.pop-persons{
+    h1{
+        font-family: 'Qanelas Bold';
+        font-size: 60px;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 30px; 
+    }
+    .person-box{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        .person-cont{
+            display: flex;
+            gap: 20px;
+        }
+
+        .person{
+                position: relative;
+                img{
+                    width: 100%;
+                    height: 444px;
+
+                }
+            
+            .person-info{
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                bottom: 10%;
+                left: 10%;
+                position: absolute;
+                h3{
+                    font-family: Qanelas;
+                    font-size: 27px;
+                    font-weight: 700;
+                    line-height: 33.45px;
+                    color: white;
+                }
+                p{
+                    font-family: Qanelas;
+                    font-size: 15px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    color: #F2F60F;                   
+                }
+            }
+        }
+        .person-tab{
+            background: #1B2133;
+            border-radius: 12px;
+            padding: 10px;
+            overflow: auto;
+            height: 444px;
+            scrollbar-width: none;
+            .actor{
+                display: flex;
+                justify-content: space-between;
+                border: 1px,  solid, #1E2538;
+                border-top: 0;
+                border-right: 0;
+                border-left: 0;
+                .left{
+                    // flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding-bottom: 20px;
+                    h3{
+                        font-family: Qanelas;
+                        font-size: 27px;
+                        font-weight: 700;
+                        line-height: 33.45px;
+                        color: white;
+                    }
+                    p{
+                        font-family: Qanelas;
+                        font-size: 15px;
+                        font-weight: 500;
+                        line-height: 20px;
+                        color: #F2F60F;                   
+                    }
+                }
+                .right{
+                    display: flex;
+                    align-items: center;
+                    p{
+                        width: 75.62px;
+                        height: 19.45px;
+                        top: 3970.77px;
+                        left: 1570.52px;
+                        gap: 0px;
+                        opacity: 0px;
+                        color: #F2F60F;
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -36,17 +36,17 @@
       <section class="trailer">
         <div class="trailer-info">
           <h1>Новые трейлеры</h1> 
-          <button>Все трейлеры</button>
         </div>
         
         <div class="traler-movie">
-          <iframe width="1200px" height="522" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="Me at the zoo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe class="trailer-link" width="1200px" height="522" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="Me at the zoo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="traler-name"> <h3>Форсаж 9</h3></div>
 
         <div class="trailers">
           <div class="trailer-item">
-            <img src="/public/images/trailer.png" alt="trailer">
+            
+            <div class="play"></div>
             <h3>Чёрная Вдова</h3>
           </div>
         </div>
@@ -57,14 +57,54 @@
           <h1>Популярные фильмы</h1>
           <div class="hr"></div>
           <div class="years">
-            
+            <h3 data-year="all" class="year year_active">Все время</h3>
+                    <h3 data-year="2019" class="year">2019</h3>
+                    <h3 data-year="2018" class="year">2018</h3>
+                    <h3 data-year="2017" class="year">2017</h3>
+                    <h3 data-year="2016" class="year">2016</h3>
+                    <h3 data-year="2015" class="year">2015</h3>
+                    <h3 data-year="2014" class="year">2014</h3>
           </div>
-        </div>
+        </div> 
         <div class="popular-playing">
           
         </div>
 
       </div>
+
+      <section class="pop-persons">
+        <h1>Популярные персоны</h1>
+
+        <div class="person-box">
+          <div class="person-cont">
+            <div class="person">
+            <img src="/public/images/Джейсон Стейтем.png" alt="actor">
+            <h3>name</h3>
+            <p>age</p>
+          </div>
+          <div class="person">
+            <img src="/public/images/Джейсон Стейтем.png" alt="actor">
+            <div class="person-info">
+              <h3>name</h3>
+              <p>age</p>
+            </div>
+          </div>
+          </div>
+          
+          <div class="person-tab">
+            <div class="actor">
+              <div class="left">
+               <h3>name</h3>
+                <p>age</p>
+              </div>
+              <div class="right">
+                <p>place</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
 
 
     </div>
