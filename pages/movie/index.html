@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.scss">
+    <link rel="stylesheet" href="./../../src/style.scss">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="backdrop"></div>
+
+    <header></header>
+
+    <div class="wrap">
+        <main class="main">
+            <div class="top">
+                <img class="poster" src="/public/icons/404poster.jpg" alt="">
+                <div class="descriptions">
+                    <h1 class="movie_name"></h1>
+                    <h3 class="movie_name_orig"></h3>
+
+                    <canvas class="cdx" id="myPieChart"></canvas>
+                    <p class="desc"></p>
+
+                    <a href="#trailer_box" class="to_trailer">Смотреть трейлер</a>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="raiting">
+                    <div class="fill"></div>
+                    <h4 class="percent"></h4>
+                </div>
+                <div class="to_favorite">
+                    <img src="/public/icons/heart 1.svg" alt="">
+                </div>
+            </div>
+
+            <div class="info"></div>
+        </main>
+
+        <section class="in_role">
+            <h1>В главных ролях:</h1>
+            <div class="in_role_grid"></div>
+        </section>
+
+        <section class="trailer_section">
+            <h1>Трейлер фильма</h1>
+            <div class="trailer_box" id="trailer_box">
+                <iframe class="trailer_src" src="https://www.youtube.com/embed/jNQXAC9IVRw" allowfullscreen></iframe>
+            </div>
+            <div class="trailer_name" id="trailer_name">Me at the zoo</div>
+        </section>
+
+        <section class="posters">
+            <h1>Постеры к фильму</h1>
+            <div class="posters_box"></div>
+        </section>
+
+        <section class="movie_images">
+            <h1>Кадры из фильма</h1>
+            <div class="images_gallery"></div>
+        </section>
+
+        <section class="similar">
+            <h1>Похожие фильмы</h1>
+            <div class="similar_wrap"></div>
+        </section>
+    </div>
+
+    <script type="module" src="./index.ts"></script>
+</body>
+</html>

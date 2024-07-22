@@ -1,4 +1,4 @@
-import { getData } from "./request"
+import { GenreItem } from "../components/componentTypes"
 
 export function reloadHeader(header: any) {
     const containerDiv = document.createElement("div")
@@ -61,171 +61,34 @@ export function reloadHeader(header: any) {
     right.append(tools)
     centerNav.append(navLink1, navLink2, navLink3, navLink4, navLink5, navLink6, navLink7)
     center.append(centerNav)
-    left.append(leftLink, logo)
+    leftLink.append(logo)
+    left.append(leftLink)
     headerDiv.append(left, center, right)
     containerDiv.append(headerDiv)
     header.append(containerDiv)
 }
 
-export function reloadGenres(arr:Array<any> , place: HTMLElement) {
-    place.innerHTML = ''
+export function reloadGenres(arr: GenreItem[], Genres: (item: GenreItem) => HTMLElement, place: HTMLElement) {
+    place.innerHTML = '';
+
+    let allGenre = document.createElement('h4');
+    allGenre.classList.add('genre', 'genre_active');
+    allGenre.innerHTML = 'все';
+    allGenre.dataset.genre = 'all';
+    place.append(allGenre);
 
     for (let item of arr) {
-        let genre = document.createElement('h4')
-        genre.classList.add('genre')
-        genre.dataset.genre = item.id
-        genre.innerHTML = item.name
-
-        place.append(genre)
+        const elem = Genres(item);
+        place.append(elem);
     }
-
-
-    let allGenre = document.createElement('h4')
-    allGenre.classList.add('genre', 'genre_active')
-    allGenre.innerHTML = 'все'
-    
-    allGenre.dataset.genre = 'all'
-    place.prepend(allGenre)
 }
 
-export function reloadMovies(arr, place) {
-    const backdrop = document.querySelector('.backdrop')
-
-    place.innerHTML = ''
+export function reload<T>(arr: T[], component: (item: T, ...args: any[]) => HTMLElement, place: HTMLElement, ...args: any[]): void {
+    place.innerHTML = "";
 
     for (let item of arr) {
-        const movie = document.createElement('a')
-        const movie_card = document.createElement("div")
-        const movie_poster = document.createElement("img")
-        const average = document.createElement("span")
-        const movie_name = document.createElement("div")
-
-        movie_poster.classList.add("movie_poster")
-        movie_name.classList.add("movie_name")
-        movie_card.classList.add("movie_card")
-        movie.classList.add('movie_card_link')
-        average.classList.add('score')
-        movie.href = `/pages/movie/?id=${item.id}`
-        movie_poster.src = `https://image.tmdb.org/t/p/original${item.poster_path}`
-        movie_poster.alt = "movie"
-        average.innerHTML = item.vote_average
-        movie_name.innerHTML = item.title
-
-        movie.onmouseenter = () => {
-            backdrop.style.background = `url(https://image.tmdb.org/t/p/original${item.backdrop_path}) no-repeat center / cover`
-        }
-
-        
-
-        movie_card.append(movie_poster, average, movie_name)
-        movie.append(movie_card)
-        place.append(movie)
+        const elem = component(item, ...args);
+        place.append(elem);
     }
 }
 
-// export function reload(arr, component, place){
-//     place.innerHTML = ""
-
-//     for(let item of arr){
-//         const elem = component(item)
-
-//         place.append(elem)
-//     }
-// }
-
-
-// export function reloadActors(arr, place){
-//     place.innerHTML = "";
-
-//     for(let item of arr){
-//         let div = document.createElement("div")
-
-//     }
-// }
-
-export function reloadTrailers(arr, place){
-    place.innerHTML = "";
-
-    const link = document.querySelector(".trailer-link");
-    const mainName = document.querySelector(".traler-name h3");
-
-    for(let item of arr) {
-        const tralerItem = document.createElement("div");
-        const picture = document.createElement("img");
-        const tralerName = document.createElement("h3");
-        const play = document.createElement("div");
-
-        tralerItem.classList.add("trailer-item");
-        picture.classList.add("picture");
-        play.classList.add("play");
-
-        picture.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
-        tralerName.innerText = item.title
-
-        tralerItem.onclick = () => {
-            getData(`https://api.themoviedb.org/3/movie/${item.id}/videos`)
-            .then(res => {
-                let result = res.data.results.find(el => el.type === "Trailer");
-                if(result) {
-                    link.src = `https://www.youtube.com/embed/${result.key}`;
-                }
-            });
-
-            mainName.innerText = item.title;
-        }
-
-        place.append(tralerItem);
-        tralerItem.append(picture, tralerName, play);
-    }
-}
-
-export function reloadStars(arr, place){
-    place.innerHTML = "";
-
-    for(let item of arr){
-        const person = document.createElement("div")
-        const img = document.createElement("img")
-        const personInfo = document.createElement("div")
-        const h3 = document.createElement("h3")
-        const p = document.createElement("p")
-
-        person.classList.add("person")
-        personInfo.classList.add("person-info")
-
-        img.src = `https://image.tmdb.org/t/p/original${item.profile_path}`
-
-        h3.innerHTML = item.name
-        p.innerHTML = item.popularity
-
-        place.append(person)
-        person.append(img, personInfo)
-        personInfo.append(h3, p)
-    }
-    
-}
-
-export function reloadActors(arr, place){
-    place.innerHTML = ""
-    let top_place: number = 3
-    for(let item of arr) {
-        let actor = document.createElement("div")
-        let left = document.createElement("div")
-        let h3 = document.createElement("h3")
-        let p = document.createElement("p")
-        let right = document.createElement("div")
-        let p1 = document.createElement("p")
-
-        actor.classList.add("actor")
-        left.classList.add("left")
-        right.classList.add("right")
-
-        h3.innerHTML = item.name
-        p.innerHTML = item.popularity
-        p1.innerHTML = `${top_place++} место`
-
-        place.append(actor)
-        actor.append(left, right)
-        left.append(h3, p)
-        right.append(p1)
-    }
-}

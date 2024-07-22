@@ -1,33 +1,39 @@
+import { Actors } from "./components/actors";
+import {  Genres } from "./components/genre";
+import { Stars } from "./components/stars";
+import { Trailer } from "./components/trailers";
 import { getData } from "./modules/request";
-import { reloadActors, reloadGenres, reloadHeader, reloadMovies, reloadStars, reloadTrailers } from "./modules/ui";
-
+import { Movie } from "./components/movie";
+import { reload, reloadGenres, reloadHeader,  } from "./modules/ui";
 
 const header = document.querySelector("header");
 if (header) {
     reloadHeader(header);
 }
 
-const backdrop = document.querySelector(".backdrop");
-const genres = document.querySelector(".genres");
-const nowPlaying = document.querySelector(".now_playing") as HTMLElement | null;
-const nowPlayingBtn = document.querySelector(".now_playing_show_more");
-const genresCont = document.querySelector('.genres') as HTMLElement | null;
-const popularsCont = document.querySelector('.popular-playing') as HTMLElement | null;
-const trailers = document.querySelector('.trailers') as HTMLElement | null;
-const personCont = document.querySelector('.person-cont') as HTMLElement | null;
-const personTab = document.querySelector('.person-tab') as HTMLElement | null;
+const backdrop = document.querySelector(".backdrop") as HTMLElement
+const nowPlaying = document.querySelector(".now_playing") as HTMLElement
+const nowPlayingBtn = document.querySelector(".now_playing_show_more") as HTMLElement
+const genresCont = document.querySelector('.genres') as HTMLElement
+const popularsCont = document.querySelector('.popular-playing') as HTMLElement 
+const trailers = document.querySelector('.trailers') as HTMLElement 
+const personCont = document.querySelector('.person-cont') as HTMLElement 
+const personTab = document.querySelector('.person-tab') as HTMLElement
+const link = document.querySelector(".trailer-link");
+const mainName = document.querySelector(".traler-name h3");
+let showAllMovies: boolean = false
 
-getData('https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1')
+getData('movie/now_playing?language=ru-RU&page=1')
     .then(res => {
         if (nowPlaying) {
-            reloadMovies(res.data.results.slice(0, 8), nowPlaying);
+            reload(res.data.results.slice(0, 8), Movie, nowPlaying, backdrop);
         }
     });
 
-getData('https://api.themoviedb.org/3/genre/movie/list?language=ru-RU')
+    getData('genre/movie/list?language=ru-RU')
     .then(res => {
         if (genresCont) {
-            reloadGenres(res.data.genres, genresCont);
+            reloadGenres(res.data.genres, Genres, genresCont);
 
             const genreWithData = document.querySelectorAll(".genre") as NodeListOf<HTMLElement>;
 
@@ -38,18 +44,29 @@ getData('https://api.themoviedb.org/3/genre/movie/list?language=ru-RU')
                     tab.classList.add('genre_active');
                     prevGenre = idx;
 
-                    if (tab.dataset.genre === 'all') {
-                        getData('https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1')
+                    const genreId = tab.dataset.genre;
+                    const params = new URLSearchParams(window.location.search);
+
+                    if (genreId) {
+                        params.set('with_genres', genreId);
+                    } else {
+                        params.delete('with_genres');
+                    }
+                    window.history.replaceState({}, '', `${window.location.pathname}?${params.toString()}`);
+
+
+                    if (genreId === 'all') {
+                        getData('movie/now_playing?language=ru-RU&page=1')
                             .then(res => {
                                 if (nowPlaying) {
-                                    reloadMovies(res.data.results.slice(0, 8), nowPlaying);
+                                    ShowOrHide(res.result)
                                 }
                             });
                     } else {
-                        getData(`https://api.themoviedb.org/3/discover/movie?with_genres=${tab.dataset.genre}&language=ru-RU`)
+                        getData(`discover/movie?with_genres=${genreId}&language=ru-RU`)
                             .then(res => {
                                 if (nowPlaying) {
-                                    reloadMovies(res.data.results.slice(0, 8), nowPlaying);
+                                    ShowOrHide(res.data.results)
                                 }
                             });
                     }
@@ -58,12 +75,21 @@ getData('https://api.themoviedb.org/3/genre/movie/list?language=ru-RU')
         }
     });
 
+    function ShowOrHide(arr: any){
+        if(!showAllMovies) {
+            reload(arr, Movie, nowPlaying, backdrop);
+            showAllMovies = true
+        } else {
+            reload(arr, Movie, nowPlaying, backdrop);
+            showAllMovies = false
+        }
+    }
 
 
-    getData('https://api.themoviedb.org/3/movie/popular?language=ru-RU&page=1')
+    getData('movie/popular?language=ru-RU&page=1')
     .then(res => {
         if (popularsCont) {
-            reloadMovies(res.data.results.slice(0, 8), popularsCont);
+            reload(res.data.results.slice(0, 8), Movie, popularsCont, backdrop);
         }
     });
 
@@ -71,15 +97,15 @@ getData('https://api.themoviedb.org/3/genre/movie/list?language=ru-RU')
     if (!nowPlayingBtn.classList.contains('active')) {
         nowPlayingBtn.classList.add('active')
 
-        getData('https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1')
-            .then(res => reloadMovies(res.data.results, nowPlaying))
+        getData('movie/now_playing?language=ru-RU&page=1')
+            .then(res => reload(res.data.results, Movie, nowPlaying, backdrop))
 
             nowPlayingBtn.innerHTML = 'Скрыть'
     } else {
         nowPlayingBtn.classList.remove('active')
 
-        getData('https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1')
-            .then(res => reloadMovies(res.data.results.slice(0, 8), nowPlaying))
+        getData('movie/now_playing?language=ru-RU&page=1')
+            .then(res => reload(res.data.results.slice(0, 8), Movie, nowPlaying, backdrop))
 
             nowPlayingBtn.innerHTML = 'Показать все'
     }
@@ -95,17 +121,17 @@ yearWithData.forEach((tab, idx) => {
         prevGenre = idx;
 
         if (tab.dataset.year === 'all') {
-            getData('https://api.themoviedb.org/3/movie/now_playing?language=ru-RU&page=1')
+            getData('movie/now_playing?language=ru-RU&page=1')
                 .then(res => {
                     if (nowPlaying) {
-                        reloadMovies(res.data.results.slice(0, 8), popularsCont);
+                        reload(res.data.results.slice(0, 8), Movie, popularsCont, backdrop);
                     }
                 });
         } else {
-            getData(`https://api.themoviedb.org/3/discover/movie?primary_release_year=${tab.dataset.year}&language=ru-RU&page=1`)
+            getData(`discover/movie?primary_release_year=${tab.dataset.year}&language=ru-RU&page=1`)
                 .then(res => {
                     if (nowPlaying) {
-                        reloadMovies(res.data.results.slice(0, 8), popularsCont);
+                        reload(res.data.results.slice(0, 8), Movie, popularsCont, backdrop);
                     }
                 });
             }
@@ -113,11 +139,11 @@ yearWithData.forEach((tab, idx) => {
     });
     
 
-    getData('https://api.themoviedb.org/3/movie/upcoming?language=ru-RU&page=1')
-    .then(res => reloadTrailers(res.data.results, trailers))
+    getData('movie/upcoming?language=ru-RU&page=1')
+    .then(res => reload(res.data.results, Trailer, trailers, link, mainName))
 
-    getData('https://api.themoviedb.org/3/person/popular?language=ru-RU&page=1')
-    .then(res => reloadStars(res.data.results.slice(0, 2), personCont))
+    getData('person/popular?language=ru-RU&page=1')
+    .then(res => reload(res.data.results.slice(0, 2), Stars, personCont))
 
-    getData('https://api.themoviedb.org/3/person/popular?language=ru-RU&page=1')
-    .then(res => reloadActors(res.data.results.slice(3), personTab))
+    getData('/person/popular?language=ru-RU&page=1')
+    .then(res => reload(res.data.results.slice(3), Actors, personTab))
