@@ -1,4 +1,4 @@
-import { MovieItem } from "./componentTypes";
+import { MovieItem } from "../Types";
 
 export function Movie(item: MovieItem, backdrop: HTMLElement): HTMLElement {
     const movie = document.createElement('a');
@@ -11,12 +11,13 @@ export function Movie(item: MovieItem, backdrop: HTMLElement): HTMLElement {
     movieName.classList.add("movie_name");
     movieCard.classList.add("movie_card");
     movie.classList.add('movie_card_link');
+    movie.classList.add("swiper-slide")
     average.classList.add('score');
 
     movie.href = `/pages/movie/?id=${item.id}`;
     moviePoster.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
     moviePoster.alt = item.title;
-    average.innerHTML = item.vote_average.toString();
+    average.innerHTML = item.vote_average.toFixed(1).toString()
     movieName.innerHTML = item.title;
 
     movie.onmouseenter = () => {

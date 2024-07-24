@@ -1,4 +1,4 @@
-import { ImageItem } from "./componentTypes";
+import { ImageItem } from "../Types";
 
 export function createImage(item: ImageItem) {
     const img = document.createElement('img');

@@ -1,4 +1,4 @@
-import { GenreItem } from "../components/componentTypes"
+import { DebounceLeading } from "../Types"
 
 export function reloadHeader(header: any) {
     const containerDiv = document.createElement("div")
@@ -23,7 +23,7 @@ export function reloadHeader(header: any) {
     const searchBtn = document.createElement("button") 
     const loginBtn = document.createElement("button")
 
-    leftLink.href = "/'"
+    leftLink.href = "/"
     navLink1.href = "#"
     navLink2.href = "#"
     navLink3.href = "#"
@@ -68,20 +68,6 @@ export function reloadHeader(header: any) {
     header.append(containerDiv)
 }
 
-export function reloadGenres(arr: GenreItem[], Genres: (item: GenreItem) => HTMLElement, place: HTMLElement) {
-    place.innerHTML = '';
-
-    let allGenre = document.createElement('h4');
-    allGenre.classList.add('genre', 'genre_active');
-    allGenre.innerHTML = 'все';
-    allGenre.dataset.genre = 'all';
-    place.append(allGenre);
-
-    for (let item of arr) {
-        const elem = Genres(item);
-        place.append(elem);
-    }
-}
 
 export function reload<T>(arr: T[], component: (item: T, ...args: any[]) => HTMLElement, place: HTMLElement, ...args: any[]): void {
     place.innerHTML = "";
@@ -92,3 +78,15 @@ export function reload<T>(arr: T[], component: (item: T, ...args: any[]) => HTML
     }
 }
 
+export const debounce_leading: DebounceLeading = (func, timeout = 300) => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    return (...args: any[]) => {
+      if (!timer) {
+        func.apply(null, args);
+      }
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        timer = undefined;
+      }, timeout);
+    };
+  };

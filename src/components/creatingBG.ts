@@ -1,4 +1,4 @@
-import { BackdropItem } from "./componentTypes";
+import { BackdropItem } from "../Types";
 
 export function createBackdrop(item: BackdropItem) {
     const div = document.createElement('div');

@@ -1,4 +1,4 @@
-import { RoleItem } from "./componentTypes";
+import { RoleItem } from "../Types";
 
 export function InRole(item: RoleItem): HTMLDivElement {
     const roleItem = document.createElement('div');

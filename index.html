@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
     <link rel="stylesheet" href="/src/style.scss">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
 
@@ -16,6 +17,22 @@
     </header>
 
     <div class="container">
+      <div class="search_wrap invisible">
+        <div class="search_box">
+            <input id="search_inp" placeholder="Запрос" type="text" name="search">
+
+            <div class="logo_serach">&#128270;</div>
+
+            <button class="close">&#10005;</button>
+        </div>
+
+        <div class="results">
+            <div class="result_cont">
+
+            </div>
+        </div>
+        
+    </div>
 
       <section class="now">
         <div class="now_playing_top">
@@ -52,26 +69,32 @@
         </div>
       </section>
 
-      <div class="popular">
+      <section class="popular">
         <div class="popular-top">
           <h1>Популярные фильмы</h1>
           <div class="hr"></div>
           <div class="years">
             <h3 data-year="all" class="year year_active">Все время</h3>
-                    <h3 data-year="2019" class="year">2019</h3>
-                    <h3 data-year="2018" class="year">2018</h3>
-                    <h3 data-year="2017" class="year">2017</h3>
-                    <h3 data-year="2016" class="year">2016</h3>
-                    <h3 data-year="2015" class="year">2015</h3>
-                    <h3 data-year="2014" class="year">2014</h3>
+            <h3 data-year="2019" class="year">2019</h3>
+            <h3 data-year="2018" class="year">2018</h3>
+            <h3 data-year="2017" class="year">2017</h3>
+            <h3 data-year="2016" class="year">2016</h3>
+            <h3 data-year="2015" class="year">2015</h3>
+            <h3 data-year="2014" class="year">2014</h3>
           </div>
-        </div> 
-        <div class="popular-playing">
-          
         </div>
-
-      </div>
-
+        <div class="swiper">
+          <div class="swiper-wrapper popular-playing">
+            
+           
+            
+          </div>
+          
+          <button class="swiper-button-next"></button>
+          <button class="swiper-button-prev"></button>
+        </div>
+      </section>
+      
       <section class="pop-persons">
         <h1>Популярные персоны</h1>
 
@@ -109,7 +132,8 @@
 
     </div>
 
-    
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

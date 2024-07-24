@@ -1,28 +1,29 @@
-import { GenreItem } from "./componentTypes";
-
+import { GenreItem } from "../Types";
 
 export function Genres(item: GenreItem): HTMLElement {
     let genre = document.createElement('h4');
+
+    if (item.name === "All") {
+        genre.classList.add("genre_active");
+        // location.href = "/"
+    }
+
     genre.classList.add('genre');
-    genre.dataset.genre = item.id;
+    genre.dataset.genre = item.id ? item.id : '';
     genre.innerHTML = item.name;
 
-    let allGenre = document.createElement('h4');
-    allGenre.classList.add('genre', 'genre_active');
-    allGenre.innerHTML = 'все';
-    allGenre.dataset.genre = 'all';
-    
     genre.onclick = () => {
-        
+        const params = new URLSearchParams(window.location.search);
+
+        if (item.name === "All") {
+            params.delete('genre');
+        } else if (item.id) {
+            params.set('genre', item.id);
+        }
+
+        window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
+        location.reload();
     }
 
     return genre;
-}
-
-export function AllGenres(): HTMLElement{
-    let allGenre = document.createElement('h4');
-    allGenre.classList.add('genre', 'genre_active');
-    allGenre.innerHTML = 'все';
-    allGenre.dataset.genre = 'all';
-    return allGenre
 }

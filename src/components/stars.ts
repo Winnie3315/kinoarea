@@ -1,4 +1,4 @@
-import { StarItem } from "./componentTypes"
+import { StarItem } from "../Types"
 
 export function Stars(item: StarItem): HTMLElement{
     const person = document.createElement("div")

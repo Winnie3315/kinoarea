@@ -1,11 +1,11 @@
 import { getData } from "../modules/request";
-import { TrailerItem } from "./componentTypes";
+import { TrailerItem } from "../Types";
 
-export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HTMLElement): HTMLElement {
+export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HTMLElement, arr: any): HTMLElement {
     const tralerItem = document.createElement("div");
     const picture = document.createElement("img");
     const tralerName = document.createElement("h3");
-    const play = document.createElement("div");
+    const play = document.createElement("img");
 
     tralerItem.classList.add("trailer-item");
     picture.classList.add("picture");
@@ -14,6 +14,7 @@ export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HT
     picture.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
     picture.alt = item.title;
     tralerName.innerHTML = item.title;
+    play.src = "/public/images/play.svg"
 
     tralerItem.onclick = () => {
         getData(`movie/${item.id}/videos`)
@@ -28,8 +29,24 @@ export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HT
 
         mainName.innerHTML = item.title;
     };
+    mainName.innerHTML = arr[0].title
+    getData(`movie/${arr[0].id}/videos?language=ru-RU`)
+        .then(res => {
+            if (res.data.results.length > 0) {
+                let trailer = res.data.results.find((el: any) => el.type === 'Trailer')
+                link.src = `https://www.youtube.com/embed/${trailer.key}`
+            } else {
+                getData(`movie/${arr[0].id}/videos?language=ru-RU`)
+                    .then(res => {
+                        let trailer = res.data.results.find((el: any) => el.type === 'Trailer')
+                        link.src = `https://www.youtube.com/embed/${trailer.key}`
+                    })
+            }
 
-    tralerItem.append(picture, tralerName, play);
+        })
+
+    picture.append(play)
+    tralerItem.append(picture, tralerName);
     
     return tralerItem;
 }

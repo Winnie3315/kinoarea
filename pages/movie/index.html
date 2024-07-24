@@ -14,6 +14,24 @@
     <header></header>
 
     <div class="wrap">
+        <div class="search_wrap invisible">
+            <div class="search_box">
+                <input id="search_inp" placeholder="Запрос" type="text" name="search">
+
+                <div class="logo_serach">
+                    <img src="&#128270;" alt="">
+                </div>
+
+                <button class="close">&#10005;</button>
+            </div>
+
+            <div class="results">
+                <div class="result_cont">
+                    
+                </div>
+            </div>
+            
+        </div>
         <main class="main">
             <div class="top">
                 <img class="poster" src="/public/icons/404poster.jpg" alt="">
@@ -21,7 +39,11 @@
                     <h1 class="movie_name"></h1>
                     <h3 class="movie_name_orig"></h3>
 
-                    <canvas class="cdx" id="myPieChart"></canvas>
+                    <div class="cdx-cont" width="52" height="52">
+                        <center><canvas  id="cdx" ></canvas></center>
+                        <div class="score_av"></div>
+                    </div>
+                    
                     <p class="desc"></p>
 
                     <a href="#trailer_box" class="to_trailer">Смотреть трейлер</a>
@@ -44,6 +66,22 @@
         <section class="in_role">
             <h1>В главных ролях:</h1>
             <div class="in_role_grid"></div>
+        </section>
+
+        <section class="trailer-type">
+            <div class="trailer-typebox">
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item item_active">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+                <div class="item">Примьера</div>
+            </div>
         </section>
 
         <section class="trailer_section">

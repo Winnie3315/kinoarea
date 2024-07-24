@@ -1,4 +1,4 @@
-import { ActorItem } from "./componentTypes";
+import { ActorItem } from "../Types";
 
 let top_place: number = 3
 export function Actors(item: ActorItem): HTMLElement{

@@ -57,3 +57,20 @@ export interface ImageItem {
 export interface BackdropItem {
     file_path: string;
 }
+//film types
+export interface TypeItem{
+    type: string
+}
+//search
+export interface SearchItem {
+    id: string;
+    poster_path?: string;
+    title: string;
+    original_title: string;
+    release_date: string;
+    vote_average: number;
+}
+//debounse
+export interface DebounceLeading {
+    <T extends (...args: any[]) => void>(func: T, timeout?: number): (...args: Parameters<T>) => void;
+  }

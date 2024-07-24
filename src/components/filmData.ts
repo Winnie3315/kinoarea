@@ -1,4 +1,4 @@
-import { DataItem } from "./componentTypes";
+import { DataItem } from "../Types";
 
 export function Data(item: DataItem): HTMLElement {
     const dataMain = document.createElement("div");
