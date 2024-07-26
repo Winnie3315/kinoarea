@@ -45,8 +45,8 @@ export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HT
 
         })
 
-    picture.append(play)
-    tralerItem.append(picture, tralerName);
+    
+    tralerItem.append(picture, tralerName, play);
     
     return tralerItem;
 }

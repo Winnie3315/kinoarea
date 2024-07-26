@@ -1,7 +1,7 @@
 import { StarItem } from "../Types"
 
 export function Stars(item: StarItem): HTMLElement{
-    const person = document.createElement("div")
+    const person = document.createElement("a")
     const img = document.createElement("img")
     const personInfo = document.createElement("div")
     const h3 = document.createElement("h3")
@@ -14,6 +14,7 @@ export function Stars(item: StarItem): HTMLElement{
 
     h3.innerHTML = item.name
     p.innerHTML = item.popularity.toString()
+    person.href = `/pages/actor/?id=${item.id}`
 
     person.append(img, personInfo)
     personInfo.append(h3, p)

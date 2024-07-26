@@ -4,11 +4,10 @@ import { Stars } from "./components/stars";
 import { Trailer } from "./components/trailers";
 import { getData } from "./modules/request";
 import { Movie } from "./components/movie";
-import { debounce_leading, reload, reloadHeader } from "./modules/ui";
+import { debounce_leading, reload, reloadHeader, setSwiper } from "./modules/ui";
 import { Search } from ".././src/components/search"
-import Swiper from 'swiper';
 import 'swiper/css';
-import { Navigation } from "swiper/modules";
+
 
 const header = document.querySelector("header");
 if (header) {
@@ -158,33 +157,100 @@ getData('movie/now_playing?language=ru-RU&page=1')
                     }
                 });
 
-const yearWithData = document.querySelectorAll(".year") as NodeListOf<HTMLElement>;
+// const yearWithData = document.querySelectorAll(".year") as NodeListOf<HTMLElement>;
 
+// let prevYear = 0;
+// yearWithData.forEach((tab, idx) => {
+//     tab.onclick = () => {
+//         yearWithData[prevYear].classList.remove('year_active');
+//         tab.classList.add('year_active');
+//         prevYear = idx;
+
+//         const year = tab.dataset.year;
+//         if (year === 'all') {
+//             getData('movie/now_playing?language=ru-RU&page=1')
+//                 .then(res => {
+//                     if (popularsCont) {
+//                         setSwiper(res.data.results, ".swiper", Movie, popularsCont, backdrop)
+//                     }
+//                 });
+//         } else {
+//             getData(`discover/movie?primary_release_year=${year}&language=ru-RU&page=1`)
+//                 .then(res => {
+//                     if (popularsCont) {
+//                         // reload(res.data.results, Movie, popularsCont, backdrop)
+//                         setSwiper(res.data.results, ".swiper", Movie, popularsCont, backdrop)
+//                     }
+//                 });
+//         }
+//     };
+// });
+
+
+// const yearWithData = document.querySelectorAll('.years .year');
+// let prevYear = 0;
+
+// yearWithData.forEach((tab: any, idx) => {
+//   tab.onclick = () => {
+//     yearWithData[prevYear].classList.remove('year_active');
+//     tab.classList.add('year_active');
+//     prevYear = idx;
+
+//     const year = tab.dataset.year;
+//     if (year === 'all') {
+//       getData('movie/now_playing?language=ru-RU&page=1')
+//         .then(res => {
+//           if (popularsCont) {
+//             setSwiper(res.data.results, "swiper", Movie, popularsCont, backdrop);
+//           }
+//         });
+//     } else {
+//       getData(`discover/movie?primary_release_year=${year}&language=ru-RU&page=1`)
+//         .then(res => {
+//           if (popularsCont) {
+//             setSwiper(res.data.results, "swiper", Movie, popularsCont, backdrop);
+//           }
+//         });
+//     }
+//   };
+// });
+
+const yearWithData = document.querySelectorAll('.years .year');
 let prevYear = 0;
-yearWithData.forEach((tab, idx) => {
-    tab.onclick = () => {
-        yearWithData[prevYear].classList.remove('year_active');
-        tab.classList.add('year_active');
-        prevYear = idx;
 
-        const year = tab.dataset.year;
-        if (year === 'all') {
-            getData('movie/now_playing?language=ru-RU&page=1')
-                .then(res => {
-                    if (popularsCont) {
-                        reload(res.data.results, Movie, popularsCont, backdrop)
-                    }
-                });
-        } else {
-            getData(`discover/movie?primary_release_year=${year}&language=ru-RU&page=1`)
-                .then(res => {
-                    if (popularsCont) {
-                        reload(res.data.results, Movie, popularsCont, backdrop)
-                    }
-                });
-        }
-    };
+
+yearWithData.forEach((tab, idx) => {
+  if (tab.classList.contains('year_active')) {
+    prevYear = idx;
+  }
 });
+
+yearWithData.forEach((tab, idx) => {
+  tab.onclick = () => {
+    yearWithData[prevYear].classList.remove('year_active');
+    tab.classList.add('year_active');
+    prevYear = idx;
+
+    const year = tab.dataset.year;
+    let url = '';
+    if (year === 'all') {
+      url = 'movie/now_playing?language=ru-RU&page=1';
+    } else {
+      url = `discover/movie?primary_release_year=${year}&language=ru-RU&page=1`;
+    }
+
+    getData(url)
+      .then(res => {
+        if (popularsCont) {
+          setSwiper(res.data.results, "swiper", Movie, popularsCont, backdrop);
+        }
+      })
+      .catch(err => {
+        console.error('Error fetching data:', err);
+      });
+  };
+});
+
 
 getData('movie/upcoming?language=ru-RU&page=1')
     .then(res => {
@@ -232,12 +298,9 @@ getData('person/popular?language=ru-RU&page=1')
 
     search_inp.onkeyup = debouncedItem
 
-    new Swiper('.swiper', {
-        modules: [Navigation],
-        slidesPerView: 4,
-        spaceBetween: 20,
-        navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        },
-      });
+    
+
+    // getData(`discover/movie?primary_release_year=${year}&language=ru-RU&page=1`)
+    //             .then(res => {
+    //                 setSwiper(res.data.results, ".swiper", Movie, popularsCont)
+    //             });

@@ -1,7 +1,7 @@
 import { RoleItem } from "../Types";
 
-export function InRole(item: RoleItem): HTMLDivElement {
-    const roleItem = document.createElement('div');
+export function InRole(item: RoleItem): HTMLElement {
+    const roleItem = document.createElement('a');
     const img = document.createElement('img');
     const personName = document.createElement('h3');
     const roleName = document.createElement('h4');
@@ -15,6 +15,7 @@ export function InRole(item: RoleItem): HTMLDivElement {
     roleItem.classList.add('role_item');
     personName.classList.add('person_name');
     roleName.classList.add('role_name');
+    roleItem.href = `/pages/actor/?id=${item.id}`
 
     roleItem.append(img, personName, roleName);
 

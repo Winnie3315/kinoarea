@@ -5,11 +5,13 @@ export interface GenreItem {
 }
 //actors (whithout photos)
 export interface ActorItem {
+    id: string;
     name: string;
     popularity: number;
 }
 //stars (2 photo)
 export interface StarItem {
+    id: string;
     profile_path: string;
     name: string;
     popularity: number;
@@ -74,3 +76,16 @@ export interface SearchItem {
 export interface DebounceLeading {
     <T extends (...args: any[]) => void>(func: T, timeout?: number): (...args: Parameters<T>) => void;
   }
+//film cards in actors page
+export interface CardItem{
+    id: number;
+    title: string;
+    original_title: string;
+    poster_path: string | null;
+    vote_average: number;
+    character: string;
+}
+//actor photo
+export interface PhotoItem {
+    file_path: string;
+}

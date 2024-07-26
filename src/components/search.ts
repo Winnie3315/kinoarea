@@ -9,7 +9,7 @@ export function Search(item: SearchItem){
     const origTitle = document.createElement('h4');
     const releaseDate = document.createElement('p');
     const rateDiv = document.createElement('div');
-    const rateText = document.createElement('span') as HTMLElement
+    const rateText = document.createElement('span')
 
     link.classList.add('res_movie_card');
     leftDiv.classList.add('left_movie');
@@ -23,7 +23,7 @@ export function Search(item: SearchItem){
     link.href = `/pages/movie/?id=${item.id}`;
     img.src = item.poster_path ? `https://image.tmdb.org/t/p/original${item.poster_path}` : '/public/images/404poster.jpg';
     img.alt = '';
-    rateText.innerHTML = item.vote_average.toFixed(1);
+    rateText.innerHTML = item.vote_average.toFixed(1)
 
     title.innerHTML = item.title
     origTitle.innerHTML = item.original_title;

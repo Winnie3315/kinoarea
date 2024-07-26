@@ -7,7 +7,7 @@ import { createBackdrop } from "./../../src/components/creatingBG"
 import { createImage } from "./../../src/components/creatingImg"
 import { Movie } from "./../../src/components/movie"
 import { Chart, registerables } from 'chart.js';
-import { Search } from "../.././src/components/search"
+
 
 Chart.register(...registerables)
 let id = location.search.split('=').at(-1);
@@ -29,13 +29,7 @@ const score_av = document.querySelector('.score_av') as HTMLElement
 const scorePercent = document.querySelector('.percent') as HTMLElement
 const scoreFill = document.querySelector('.fill') as HTMLElement
 const trailerType = document.querySelector(".trailer-typebox") as HTMLElement
-const search_btn = document.querySelector('.search_btn') as HTMLElement
-const search_wrap = document.querySelector('.search_wrap') as HTMLElement
-const nav = document.querySelector('nav') as HTMLElement
-const close_btn = document.querySelector('.close') as HTMLElement
-const search_inp = document.querySelector('#search_inp') as HTMLInputElement
-const result_cont = document.querySelector(".result_cont") as HTMLElement
-const body = document.body
+
 reloadHeader(header)
 
 getData(`/movie/${id}?language=ru-RU`)
@@ -103,30 +97,3 @@ getData(`movie/${id}/similar?language=ru-RU&page=1`)
     .then(res => {
         reload(res.data.results.slice(0, 4), Movie, similar_wrap)
     })
-
-
-    
-    search_btn.onclick = () => {
-        search_btn.classList.add('invisible')
-        nav.classList.add('invisible')
-        search_wrap.classList.remove('invisible')
-        body.style.overflowY = 'hidden'
-    }
-    
-    close_btn.onclick = () => {
-        search_btn.classList.remove('invisible')
-        nav.classList.remove('invisible')
-        search_wrap.classList.add('invisible')
-        body.style.overflowY = 'visible'
-    }
-
-    search_inp.onkeyup = () => {
-
-            const value = search_inp.value;
-        
-            getData(`search/multi?query=${value}`)
-            .then((res) => reload(res.data.results, Search, result_cont))
-            
-            
-        
-    }
