@@ -11,6 +11,8 @@ export function reloadHeader(header: any) {
   const left = document.createElement("div");
   const leftLink = document.createElement("a");
   const logo = document.createElement("img");
+  const menuBtn = document.createElement("button")
+
 
   const center = document.createElement("div");
   const centerNav = document.createElement("nav");
@@ -36,22 +38,22 @@ export function reloadHeader(header: any) {
   const result = document.createElement("div");
 
   searchBtn.onclick = () => {
-      searchBtn.classList.add('invisible');
-      centerNav.classList.add('invisible');
-      searchWrap.classList.remove('invisible');
-      document.body.style.overflowY = 'hidden';
+    searchBtn.classList.add('invisible');
+    centerNav.classList.add('invisible');
+    searchWrap.classList.remove('invisible');
+    document.body.style.overflowY = 'hidden';
   };
 
   closeBtn.onclick = () => {
-      searchBtn.classList.remove('invisible');
-      centerNav.classList.remove('invisible');
-      searchWrap.classList.add('invisible');
-      document.body.style.overflowY = 'visible';
+    searchBtn.classList.remove('invisible');
+    centerNav.classList.remove('invisible');
+    searchWrap.classList.add('invisible');
+    document.body.style.overflowY = 'visible';
   };
 
   searchInput.onkeyup = () => {
-      const value = searchInput.value;
-      getData(`search/multi?query=${value}`)
+    const value = searchInput.value;
+    getData(`search/multi?query=${value}`)
       .then((res) => reload(res.data.results, Search, resultCont));
   };
 
@@ -78,6 +80,7 @@ export function reloadHeader(header: any) {
   loginBtn.innerHTML = "Войти";
   closeBtn.innerHTML = "&#10005;";
   searchInput.placeholder = "Запрос";
+  menuBtn.innerHTML = `<img src="/public/images/Меню.svg" alt="search">`;
 
   containerDiv.classList.add("container");
   headerDiv.classList.add("header");
@@ -95,6 +98,7 @@ export function reloadHeader(header: any) {
   searchIcon.classList.add("logo_search");
   resultCont.classList.add("result_cont");
   result.classList.add("results")
+  menuBtn.classList.add("menu")
 
   searchBox.append(searchInput, searchIcon, closeBtn);
   result.append(resultCont)
@@ -105,44 +109,76 @@ export function reloadHeader(header: any) {
   centerNav.append(navLink1, navLink2, navLink3, navLink4, navLink5, navLink6, navLink7);
   center.append(centerNav);
   leftLink.append(logo);
-  left.append(leftLink);
+  left.append(leftLink, menuBtn);
   headerDiv.append(left, center, right);
   containerDiv.append(headerDiv, searchWrap);
   header.append(containerDiv);
+
+  window.onresize = () =>{
+    const resizeHeader = () => {
+      if (window.innerWidth <= 1200) {
+        containerDiv.append(centerNav)
+        center.append(leftLink)
+        left.append(searchBtn)
+      } else {
+        center.append(centerNav);
+        left.append(leftLink);
+        tools.prepend(searchBtn)
+      }
+    };
+    resizeHeader()
+  }
+
+  const modal = document.getElementById('modal-mobile') as HTMLElement
+  const closeBt = document.getElementById('close-btn') as HTMLElement
+
+  if(modal && closeBt){
+      menuBtn.onclick = () => {
+    modal.style.display = 'block';
+  }
+
+  closeBt.onclick = () => {
+    modal.style.display = 'none';
+  }
+
+  }
+
+
 }
+
 
 
 export function reload<T>(arr: T[], component: (item: T, ...args: any[]) => HTMLElement, place: HTMLElement, ...args: any[]): void {
-    place.innerHTML = "";
+  place.innerHTML = "";
 
-    for (let item of arr) {
-        const elem = component(item, ...args);
-        place.append(elem);
-    }
+  for (let item of arr) {
+    const elem = component(item, ...args);
+    place.append(elem);
+  }
 }
 
 export const debounce_leading: DebounceLeading = (func, timeout = 300) => {
-    let timer: ReturnType<typeof setTimeout> | undefined;
-    return (...args: any[]) => {
-      if (!timer) {
-        func.apply(null, args);
-      }
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        timer = undefined;
-      }, timeout);
-    };
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  return (...args: any[]) => {
+    if (!timer) {
+      func.apply(null, args);
+    }
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      timer = undefined;
+    }, timeout);
   };
+};
 
 
-export function setSwiper(arr = [], className = "", component, place, backdrop) {
+export function setSwiper(arr = [], className = "", component: any, place: any, backdrop: any) {
   const swiperDiv = document.createElement("div");
   const swiperWrapper = document.createElement("div");
   const next = document.createElement("button");
   const prev = document.createElement("button");
 
-  next.classList.add("swiper-button-next");
-  prev.classList.add("swiper-button-prev");
+  next.classList.add("swiper-button-next", `.${className}-next`);
+  prev.classList.add(`swiper-button-prev`, `.${className}-prev` );
   swiperDiv.classList.add(className);
   swiperWrapper.classList.add("swiper-wrapper");
 
@@ -150,7 +186,7 @@ export function setSwiper(arr = [], className = "", component, place, backdrop) 
   place.append(swiperDiv);
 
   reload(arr, component, swiperWrapper, backdrop);
-
+  
   new Swiper(`.${className}`, {
     modules: [Navigation],
     slidesPerView: 4,
@@ -159,5 +195,48 @@ export function setSwiper(arr = [], className = "", component, place, backdrop) 
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
+    breakpoints: {
+      900: {
+        slidesPerView: 4,
+        spaceBetween: 15
+      },
+      768:{
+        slidesPerView: 2,
+        spaceBetween: 15
+      },
+
+    }
   });
+}
+
+export function reloadFooter(footer: HTMLElement) {
+    const footerDiv = document.createElement("div");
+    const footerTop = document.createElement("div");
+    const logo = document.createElement("img");
+    const footerCenter = document.createElement("div");
+    const title = document.createElement("h2");
+    const description = document.createElement("p");
+    const inpDiv = document.createElement("div");
+    const input = document.createElement("input");
+    const button = document.createElement("button");
+  
+    footerDiv.classList.add("footer");
+    footerTop.classList.add("footer-top");
+    footerCenter.classList.add("footer-center");
+    inpDiv.classList.add("inp");
+  
+    logo.src = "/public/images/Логотип.svg";
+    logo.alt = "logo";
+    title.innerHTML = "Подпишитесь на E-mail рассылку";
+    description.innerHTML = "Если хотите быть в курсе последних новостей и новинок кино - заполните форму ниже и оформите бесплатную E-mail рассылку!";
+    input.type = "text";
+    input.placeholder = "Введите свой E-mail адрес";
+    button.innerHTML = "Подписаться";
+  
+    footerTop.append(logo);
+    inpDiv.append(input, button);
+    footerCenter.append(title, description, inpDiv);
+    footerDiv.append(footerTop, footerCenter);
+  
+    footer.append(footerDiv);
 }

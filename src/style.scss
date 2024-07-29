@@ -3,8 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    background-color: #1E2538;
+$background: #1E2538;
+
+body {
+    background-color: $background;
 }
 a{
     text-decoration: 0;
@@ -240,7 +242,6 @@ header{
         display: flex;
         gap: 20px;
         overflow: auto;
-        scrollbar-width: none; 
     
         .trailer-item {
             width: 320px;
@@ -255,7 +256,7 @@ header{
     
             img {
                 max-width: 320px;
-                height: 280px;
+                height: 250px;
                 background-size: cover;
                 background-position: center;
                 position: relative;
@@ -311,6 +312,24 @@ header{
             line-height: 57.33px;           
         }
 
+    }
+    .trailers::-webkit-scrollbar {
+        height: 8px;
+        position: absolute;
+        background-color: #1B2133;
+    }
+
+    .trailers::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        height: 8px;
+        background-color: rgba(52, 86, 255, 0.75);
+    }
+
+    .trailers::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        height: 8px;
+        background-color: #1B2133;
     }
 }
 
@@ -395,6 +414,8 @@ header{
 }
 
 .pop-persons{
+    margin-bottom: 50px;
+    margin-top: -40px;
     h1{
         font-family: 'Qanelas Bold';
         font-size: 60px;
@@ -749,3 +770,196 @@ header{
         opacity: 1;
     }
 }
+.footer_body {
+    width: 100%;
+    background-color: #151A26;
+    .wrap{
+        width: 1200px;
+        margin: 0 auto;
+    }
+    .upcoming_movies {
+        padding: 50px;
+
+        & h1 {
+            padding-top: 50px;
+            font-size: 50px;
+            color: white
+        }
+
+        .upcoming {
+            margin-top: 40px;
+
+            .movie_card {
+                position: relative;
+                cursor: pointer;
+
+                .movie_poster {
+                    border-radius: 10px;
+                    width: 100%;
+                    height: 400px;
+                }
+
+                .score {
+                    position: absolute;
+                    top: 12px;
+                    right: 12px;
+                    padding: 3px 10px;
+                    border-radius: 5px;
+                    background-color: #89CB36;
+                    color: #fff;
+
+                    & span {
+                        font-size: 14px;
+                    }
+                }
+
+                .movie_name {
+                    margin-bottom: 5px;
+                    font-size: 16px;
+                    color: #fff;
+                }
+
+                .genres {
+                    color: #F2F60F;
+                    font-family: 'Qanelas Thin';
+                }
+            }
+        }
+    }
+}
+.footer{
+    background-image: url("/public/images/Фон\ \(1\).png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 53px;
+    height: 600px;
+    background-repeat: no-repeat;
+    .footer-center{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        h2{
+            color: #fff;
+            font-family: Qanelas;
+            font-size: 50px;
+            font-weight: 900;
+            line-height: 63.7px;
+            text-align: center;            
+        }
+        p{
+            font-family: Qanelas;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 30.84px;
+            text-align: center;
+            color: #fff;     
+            width: 700px;       
+        }
+        .inp{
+            display: flex;
+            gap: 10px;
+            input{
+                width: 570px;
+                height: 70px;
+                border-radius: 15px;
+                padding: 22px 0px 21px 27px;
+                border: 0;
+                font-family: Qanelas;
+                font-size: 17px;
+                font-weight: 400;
+                line-height: 28.31px;               
+            }
+            button{
+                width: 182px;
+                border: 0;
+                border-radius: 15px;
+                background: #F2F60F;
+                font-family: Qanelas;
+                font-size: 18px;
+                font-weight: 700;
+                line-height: 29.97px;             
+            }
+        }
+    }
+}
+iframe{
+    width: 1200px;
+    height: 530px;
+}
+.menu{
+    background-color: #fff;
+    border: 0;
+    border-radius: 10px;
+    padding: 0px 15px;
+    display: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    width: 40px;
+    height: 38px;
+}
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .modal-content-mobile {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #001f3fb8;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    max-height: 441px;
+    height: 100%;
+    
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .modal-logo {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 10px 0;
+    transition: color 0.3s;
+  }
+  
+  .modal-nav a:hover {
+    color: #f39c12;
+  }
+  .genre-menu{
+    display: none;
+  }
+  .year-menu{
+    display: none;
+  }

@@ -11,7 +11,7 @@ export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HT
     picture.classList.add("picture");
     play.classList.add("play");
 
-    picture.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
+    picture.src = `https://image.tmdb.org/t/p/original${item.backdrop_path}`;
     picture.alt = item.title;
     tralerName.innerHTML = item.title;
     play.src = "/public/images/play.svg"

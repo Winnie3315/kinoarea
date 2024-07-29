@@ -25,7 +25,7 @@ export function Search(item: SearchItem){
     img.alt = '';
     rateText.innerHTML = item.vote_average.toFixed(1)
 
-    title.innerHTML = item.title
+    title.innerHTML = item.title || item.name 
     origTitle.innerHTML = item.original_title;
     releaseDate.innerHTML = item.release_date;
 

@@ -1,0 +1,371 @@
+@media(max-width: 1200px){
+    .container{
+        width: 900px;
+        .now{
+            .hr{
+                display: none;
+            }
+            .now_playing_top{
+                display: block;
+                padding-left: 10px;
+            }
+        }
+        .search_btn {
+            background-color: #fff;
+            border: 0;
+            border-radius: 10px;
+            padding: 0px 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s ease;
+            width: 40px;
+            height: 38px;
+        }
+        nav {
+            display: flex;
+            gap: 22px;
+            justify-content: center;
+            a {
+                font-family: "Qanelas Medium";
+                color: #fff;
+                text-decoration: 0;
+            }
+        }
+        .now .now_playing .movie_card .movie_poster{
+            border-radius: 10px;
+            width: 200px;
+            height: 310px;
+        }
+        .now .now_playing .movie_card {
+            width: 200px;
+
+        }
+        .trailer .trailers .trailer-item .picture{
+            max-width: 200px;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 10px;
+        }
+        .pop-persons .person-box .person-tab {
+            border-radius: 5px; 
+        }
+        .popular .popular-playing .movie_card .movie_poster {
+            border-radius: 10px;
+            width: 200px;
+            height: 310px;
+        }
+        .popular .popular-playing .movie_card  {
+            width: 200px;
+        }
+        .popular .popular-playing {
+            display: flex;
+            gap: 33px;
+        }
+        .footer_body .upcoming_movies .upcoming .movie_card .movie_poster {
+            border-radius: 10px;
+            width: 200px;
+            height: 310px;
+        }
+        
+        iframe{
+            width: 900px;
+            height: 400px;
+        }
+        .popular-top{
+            display: block;
+            .hr{
+                display: none;
+            }
+            .years{
+                padding-left: 10px;
+            }
+        }
+        .pop-persons .person-box .person-tab {
+            height: 264px;
+        }
+        .pop-persons .person-box .person img {
+            width: 264px;
+            height: 264px;
+        }
+        .popular .popular-playing .movie_card .score {
+            position: absolute;
+            top: 12px;
+            right: 11%;
+
+        }
+        .footer_body .upcoming_movies h1 {
+            padding-top: 0px; 
+        }
+    }
+    .footer_body .wrap {
+        width: 900px;
+        margin: 0 auto;
+        
+    }
+    .footer_body .upcoming_movies .upcoming .movie_card .movie_poster {
+        border-radius: 10px;
+        width: 200px;
+        height: 310px;
+        }
+}
+@media (max-width:992px) {
+    .container{
+        width: 700px;
+        .pop-persons .person-box {
+            display: block;
+            .person img {
+                width: 321px;
+                height: 321px;
+                object-fit: cover;
+            }
+        }
+        .pop-persons .person-box .person-cont {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        .footer .footer-center .inp input {
+            width: 480px;
+            height: 57px;
+        }
+        .now .now_playing {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 33px 23px;
+        }
+        iframe{
+            width: 700px;
+        }
+    }
+    .footer_body .wrap {
+        width: 700px;
+        background-color: aqua;
+    }
+    .footer .footer-center .inp input {
+        width: 513px;
+        height: 56px;
+    }
+    .footer .footer-center .inp button {
+        width: 160px;
+    }
+    .swiper-wrapper {
+        display: flex;
+        gap: 57px;
+    }
+    .footer_body .upcoming_movies .upcoming .movie_card {
+        width: 200px;
+    }
+}
+@media (max-width:768px) {
+
+    h1{
+        font-size: 32px;
+    }
+    .container{
+            .popular-top {
+        display: flex;
+    }
+        .pop-persons {
+             margin-bottom: 5px; 
+             margin-top: 0px; 
+        }
+        .trailer .traler-name {
+            margin: 0;
+        }
+        .trailer .traler-name h3 {
+            color: #FFFFFF;
+            font-family: Qanelas;
+            font-size: 25px;
+            font-weight: 900;
+            line-height: 57.33px;
+        }
+        .popular-top .years {
+            display: none;
+        }
+        .popular-top .years {
+            display: none;
+        }
+
+         .popular .popular-playing {
+            display: flex;
+            gap: 100px;
+        }
+                .now .now_playing_top{
+                display: flex;
+                justify-content: space-between;
+                padding-left: 10px;
+                padding-right: 10px;
+        }
+        .movie_card_link{
+            width: 200px;
+        }
+        width: 500px;
+        padding: 0 20px;
+        .now .now_playing {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 33px;
+        }
+        .now .now_playing_top{
+            h1{
+            font-size: 32px;
+        }
+        
+        }
+        .trailer .trailer-info {
+            h1{
+                font-size: 32px;
+            }
+        }
+        nav {
+            display: none;
+        } 
+        iframe{
+            width: 460px;
+            height: 196px;
+        }
+    }
+    .footer_body .wrap {
+        width: 500px;
+        padding: 0 20px;
+        .popular .swiper .movie_card_link{
+            width: 200px;
+        }
+    }
+    .left{
+        display: flex;
+        gap: 5px;
+    }
+    
+    .menu{
+        display: block;
+    }
+    .now .now_playing_top .genres {
+        display: none;
+    }
+    .pop-persons h1 {
+        font-family: "Qanelas Bold";
+        font-size: 32px;
+        font-weight: 900;
+        color: white;
+        margin-bottom: 30px;
+    }
+    .footer_body .upcoming_movies {
+        padding: 0px;
+    }
+    .popular .popular-top h1 {
+
+            font-family: "Qanelas Bold";
+            font-size: 32px;
+            font-weight: 900;
+            color: white;
+        }
+        .pop-persons .person-box .person .person-info h3 {
+            font-family: Qanelas;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 33.45px;
+            color: white;
+        }
+        .pop-persons .person-box .person .person-info p {
+            font-family: Qanelas;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 20px;
+            color: #F2F60F;
+        }
+        .pop-persons .person-box .person-tab .actor .left h3 {
+            font-family: Qanelas;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 33.45px;
+            color: white;
+        }
+        .pop-persons .person-box .person-tab .actor .left p {
+            font-family: Qanelas;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 20px;
+            color: #F2F60F;
+        }
+        .footer_body .upcoming_movies h1 {
+            font-size: 32px;
+            color: white;
+        }
+        .swiper-wrapper {
+            display: flex;
+            gap: 120px;
+        }
+        .footer .footer-center h2 {
+            color: #fff;
+            font-family: Qanelas;
+            font-size: 25px;
+            font-weight: 900;
+            line-height: 63.7px;
+            text-align: center;
+        }
+        .footer .footer-center p {
+            font-family: Qanelas;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 30.84px;
+            text-align: center;
+            color: #fff;
+            width: 322px;
+        }
+        .footer .footer-center .inp input {
+            width: 288px;
+            height: 56px;
+        }
+        .footer .footer-center .inp button {
+            width: 288px;
+            height: 56px;
+        }
+        .footer .footer-center .inp {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .genre-menu {
+            display: block;
+        }
+        .trailer .trailers .trailer-item {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0px; 
+            box-sizing: border-box;
+            border-radius: 10px;
+            height: 100%;
+            position: relative;
+        }
+        .year-menu{
+            display: block;
+          }
+}
+// @media (max-width:576px) {
+//     .container{
+//         width: 100%;
+//        padding: 0 20px;
+//     iframe{
+//         width: 100%;
+//     }     
+//       .now .now_playing {
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+//         align-items: center;
+//     }
+//     .trailer .trailers .trailer-item {
+//         width: 100%;
+
+//     }
+//     }
+
+// }

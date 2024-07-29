@@ -7,6 +7,7 @@
     <title>Vite + TS</title>
     <link rel="stylesheet" href="/src/style.scss">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/src//media.scss">
   </head>
   <body>
 
@@ -24,6 +25,9 @@
           <div class="genres">
 
           </div>
+          <div class="genre-menu">
+            <img class="genre-menu-img" src="/public/images/Меню.svg" alt="">
+          </div>
       </div>
 
       <div class="now_playing">
@@ -39,7 +43,7 @@
         </div>
         
         <div class="traler-movie">
-          <iframe class="trailer-link" width="1200px" height="522" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="Me at the zoo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <iframe class="trailer-link"  src="https://www.youtube.com/embed/jNQXAC9IVRw" title="Me at the zoo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
         <div class="traler-name"> <h3>Форсаж 9</h3></div>
 
@@ -64,6 +68,9 @@
             <h3 data-year="2016" class="year">2016</h3>
             <h3 data-year="2015" class="year">2015</h3>
             <h3 data-year="2014" class="year">2014</h3>
+          </div>
+          <div class="year-menu">
+            <img src="/public//images/Меню.svg" alt="">
           </div>
         </div>
         <div class="swiper">
@@ -111,10 +118,56 @@
           </div>
         </div>
       </section>
+      
+
 
 
     </div>
+    <div class="footer_body">
+        <div class="wrap">
+            <section class="upcoming_movies">
+                <h1>Ожидаемые новинки</h1>
 
+                <div class="upcoming">
+
+                </div>
+            </section>
+
+            <footer>
+              <!-- <div class="footer">
+                <div class="footer-top">
+                  <img src="/public/images/Логотип.svg" alt="logo">
+                </div>
+                <div class="footer-center">
+                  <h2>Подпишитесь на E-mail рассылку</h2>
+                  <p>Если хотиет быть в курсе последних новостей и новинок кино - заполните форму ниже и оформите бесплатную E-mail рассылку!</p>
+                  <div class="inp">
+                    <input type="text" placeholder="Введите свой E-mail адрес">
+                    <button>Подписаться</button>
+                  </div>
+                </div>
+              </div> -->
+            </footer>
+
+        </div>
+    </div>
+
+
+    </div>
+    <div id="modal-mobile" class="modal">
+      <div class="modal-content-mobile">
+        <button id="close-btn" class="close-btn">&times;</button>
+        <img src="/public/images/Логотип.svg" alt="Kinoarea logo" class="modal-logo">
+        <nav class="modal-nav">
+          <a href="#">Афиша</a>
+          <a href="#">Медиа</a>
+          <a href="#">Фильмы</a>
+          <a href="#">Актёры</a>
+          <a href="#">Новости</a>
+          <a href="#">Подборки</a>
+          <a href="#">Категории</a>
+        </nav>
+      </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="/src/main.ts"></script>
