@@ -68,6 +68,7 @@ export interface SearchItem {
     id: string;
     poster_path?: string;
     title: string;
+    name: string;
     original_title: string;
     release_date: string;
     vote_average: number;
