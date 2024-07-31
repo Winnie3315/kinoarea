@@ -75,13 +75,13 @@ export function reloadHeader(header: any) {
   navLink6.innerHTML = "Подборки";
   navLink7.innerHTML = "Категории";
 
-  logo.src = "/public/images/logo.png";
+  logo.src = "/images/logo.png";
   logo.alt = "logo";
-  searchBtn.innerHTML = `<img src="/public/images/search.svg" alt="search">`;
+  searchBtn.innerHTML = `<img src="/images/search.svg" alt="search">`;
   loginBtn.innerHTML = "Войти";
   closeBtn.innerHTML = "&#10005;";
   searchInput.placeholder = "Запрос";
-  menuBtn.innerHTML = `<img src="/public/images/Меню.svg" alt="search">`;
+  menuBtn.innerHTML = `<img src="/images/Меню.svg" alt="search">`;
 
   containerDiv.classList.add("container");
   headerDiv.classList.add("header");
@@ -241,7 +241,7 @@ export function reloadFooter(footer: HTMLElement) {
   footerCenter.classList.add("footer-center");
   inpDiv.classList.add("inp");
 
-  logo.src = "/public/images/Логотип.svg";
+  logo.src = "/images/Логотип.svg";
   logo.alt = "logo";
   title.innerHTML = "Подпишитесь на E-mail рассылку";
   description.innerHTML = "Если хотите быть в курсе последних новостей и новинок кино - заполните форму ниже и оформите бесплатную E-mail рассылку!";
