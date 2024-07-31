@@ -234,7 +234,7 @@ export function reloadFooter(footer: HTMLElement) {
   const inpDiv = document.createElement("div");
   const input = document.createElement("input");
   const button = document.createElement("button");
-  const form = document.createElement("form") as HTMLFormElement
+  const form = document.createElement("form") as HTMLFormElement;
 
   footerDiv.classList.add("footer");
   footerTop.classList.add("footer-top");
@@ -253,14 +253,27 @@ export function reloadFooter(footer: HTMLElement) {
 
   form.name = "emailForm";
 
+  let canSubmit = true;
+  const submitDelay = 600000000000000;
+
   form.onsubmit = (e: any) => {
     e.preventDefault();
+
+    if (!canSubmit) {
+      alert("Пожалуйста, подождите перед повторной отправкой формы.");
+      return;
+    }
+
+    canSubmit = false;
+    setTimeout(() => {
+      canSubmit = true;
+    }, submitDelay);
 
     const emailForm: any = {
       email: ""
     };
 
-    const fm = new FormData(e.target)
+    const fm = new FormData(e.target);
 
     fm.forEach((value, key) => {
       emailForm[key] = value;
@@ -273,8 +286,9 @@ export function reloadFooter(footer: HTMLElement) {
       chat_id: -1002208427557,
       text: text,
       mode: "HTML"
-    })
-  }
+    });
+    form.reset();
+  };
 
   footerTop.append(logo);
   inpDiv.append(input, button);
