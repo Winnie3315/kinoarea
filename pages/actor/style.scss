@@ -208,14 +208,13 @@ body {
     }
   
     .films_flex {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 33px 23px;
+
   
       .movie_card_link {
         text-decoration: none;
         font-family: 'Qanelas Regular';
-  
+        width: 340px;
+        display: flex;
       }
   
       .movie_card {
@@ -223,11 +222,12 @@ body {
         cursor: pointer;
         font-family: 'Qanelas Regular';
         text-decoration: none;
+        
   
         .movie_poster {
           border-radius: 10px;
           width: 100%;
-          height: 400px;
+          // height: 400px;
         }
   
         .score {
@@ -641,3 +641,4 @@ body {
     display: none;
     opacity: 0;
   }
+  

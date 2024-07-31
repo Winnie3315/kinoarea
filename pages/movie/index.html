@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="./media.scss">
     <link rel="stylesheet" href="/src/media.scss">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
     <div class="backdrop"></div>
@@ -46,6 +47,40 @@
             </div>
 
             <div class="info"></div>
+        </main>
+
+
+        <main class="main-mobile">
+                <div class="top-mobile">
+                    <h1 class="movie_name_mobile"></h1>
+                    <h3 class="movie_name_orig_mobile"></h3>
+                    <div class="super-top">
+                        <img class="poster_mobile" src="/public/icons/404poster.jpg" alt="">
+                        <div class="cdx-cont_mobile" width="52" height="52">
+                            <center><canvas  id="cdx_mobile" ></canvas></center>
+                            <div class="score_av_mobile"></div>
+                        </div>
+                    </div>
+                    
+    
+                    <div class="descriptions">
+                        <p class="desc_mobile"></p>
+    
+                        <a href="#trailer_box" class="to_trailer">Смотреть трейлер</a>
+                    </div>
+                </div>
+    
+                <div class="bottom-mobile">
+                    <div class="raiting_mobile">
+                        <div class="fill_mobile"></div>
+                        <h4 class="percent_mobile"></h4>
+                    </div>
+                    <div class="to_favorite">
+                        <img src="/public/icons/heart 1.svg" alt="">
+                    </div>
+                </div>
+    
+                <div class="info_mobile"></div>
         </main>
 
         <section class="in_role">
@@ -93,6 +128,7 @@
         </section>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script type="module" src="./index.ts"></script>
 </body>
 </html>

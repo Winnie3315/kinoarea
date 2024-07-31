@@ -3,6 +3,7 @@ import { DebounceLeading } from "../Types"
 import { Navigation } from "swiper/modules"
 import { getData } from "./request"
 import { Search } from "../.././src/components/search"
+import axios from "axios"
 
 export function reloadHeader(header: any) {
   const containerDiv = document.createElement("div");
@@ -114,6 +115,16 @@ export function reloadHeader(header: any) {
   containerDiv.append(headerDiv, searchWrap);
   header.append(containerDiv);
 
+  if (window.innerWidth <= 1200) {
+    containerDiv.append(centerNav)
+    center.append(leftLink)
+    left.append(searchBtn)
+  } else {
+    center.append(centerNav);
+    left.append(leftLink);
+    tools.prepend(searchBtn)
+  }
+
   window.onresize = () =>{
     const resizeHeader = () => {
       if (window.innerWidth <= 1200) {
@@ -134,13 +145,12 @@ export function reloadHeader(header: any) {
 
   if(modal && closeBt){
       menuBtn.onclick = () => {
-    modal.style.display = 'block';
-  }
+        modal.style.display = 'block';
+      }
 
-  closeBt.onclick = () => {
-    modal.style.display = 'none';
-  }
-
+      closeBt.onclick = () => {
+        modal.style.display = 'none';
+      }
   }
 
 
@@ -171,7 +181,7 @@ export const debounce_leading: DebounceLeading = (func, timeout = 300) => {
 };
 
 
-export function setSwiper(arr = [], className = "", component: any, place: any, backdrop: any) {
+export function setSwiper(arr = [], className = "", component: any, place: any,  backdrop?: any) {
   const swiperDiv = document.createElement("div");
   const swiperWrapper = document.createElement("div");
   const next = document.createElement("button");
@@ -185,7 +195,12 @@ export function setSwiper(arr = [], className = "", component: any, place: any, 
   swiperDiv.append(swiperWrapper, next, prev);
   place.append(swiperDiv);
 
-  reload(arr, component, swiperWrapper, backdrop);
+  if(backdrop){
+    reload(arr, component, swiperWrapper, backdrop);
+  } else {
+    reload(arr, component, swiperWrapper)
+  }
+  
   
   new Swiper(`.${className}`, {
     modules: [Navigation],
@@ -210,33 +225,107 @@ export function setSwiper(arr = [], className = "", component: any, place: any, 
 }
 
 export function reloadFooter(footer: HTMLElement) {
-    const footerDiv = document.createElement("div");
-    const footerTop = document.createElement("div");
-    const logo = document.createElement("img");
-    const footerCenter = document.createElement("div");
-    const title = document.createElement("h2");
-    const description = document.createElement("p");
-    const inpDiv = document.createElement("div");
-    const input = document.createElement("input");
-    const button = document.createElement("button");
-  
-    footerDiv.classList.add("footer");
-    footerTop.classList.add("footer-top");
-    footerCenter.classList.add("footer-center");
-    inpDiv.classList.add("inp");
-  
-    logo.src = "/public/images/Логотип.svg";
-    logo.alt = "logo";
-    title.innerHTML = "Подпишитесь на E-mail рассылку";
-    description.innerHTML = "Если хотите быть в курсе последних новостей и новинок кино - заполните форму ниже и оформите бесплатную E-mail рассылку!";
-    input.type = "text";
-    input.placeholder = "Введите свой E-mail адрес";
-    button.innerHTML = "Подписаться";
-  
-    footerTop.append(logo);
-    inpDiv.append(input, button);
-    footerCenter.append(title, description, inpDiv);
-    footerDiv.append(footerTop, footerCenter);
-  
-    footer.append(footerDiv);
+  const footerDiv = document.createElement("div");
+  const footerTop = document.createElement("div");
+  const logo = document.createElement("img");
+  const footerCenter = document.createElement("div");
+  const title = document.createElement("h2");
+  const description = document.createElement("p");
+  const inpDiv = document.createElement("div");
+  const input = document.createElement("input");
+  const button = document.createElement("button");
+  const form = document.createElement("form") as HTMLFormElement
+
+  footerDiv.classList.add("footer");
+  footerTop.classList.add("footer-top");
+  footerCenter.classList.add("footer-center");
+  inpDiv.classList.add("inp");
+
+  logo.src = "/public/images/Логотип.svg";
+  logo.alt = "logo";
+  title.innerHTML = "Подпишитесь на E-mail рассылку";
+  description.innerHTML = "Если хотите быть в курсе последних новостей и новинок кино - заполните форму ниже и оформите бесплатную E-mail рассылку!";
+  input.type = "text";
+  input.placeholder = "Введите свой E-mail адрес";
+  input.name = "email";
+  button.innerHTML = "Подписаться";
+  button.type = "submit";
+
+  form.name = "emailForm";
+
+  form.onsubmit = (e: any) => {
+    e.preventDefault();
+
+    const emailForm: any = {
+      email: ""
+    };
+
+    const fm = new FormData(e.target)
+
+    fm.forEach((value, key) => {
+      emailForm[key] = value;
+    });
+
+    let text = `Новая заявка \n`;
+    text += `Почта: ${emailForm.email}`;
+
+    axios.post(`https://api.telegram.org/bot${"7284101349:AAFP2NSD3-Oe3-wYUqY0h4mG6Pfn6BjlrxA"}/sendMessage`, {
+      chat_id: -1002208427557,
+      text: text,
+      mode: "HTML"
+    })
+  }
+
+  footerTop.append(logo);
+  inpDiv.append(input, button);
+  form.append(inpDiv);
+  footerCenter.append(title, description, form);
+  footerDiv.append(footerTop, footerCenter);
+
+  footer.append(footerDiv);
+}
+
+export function creatingTrailer(place: HTMLElement, id: number, src: HTMLIFrameElement) {
+  let selectedType: string = "Trailer";
+
+  function Type(item: any) {
+      const info = document.createElement("div");
+      info.classList.add("item");
+      info.innerHTML = item.type;
+      
+      if (item.type === selectedType) {
+          info.classList.add("item_active");
+      }
+
+      info.onclick = () => {
+          document.querySelectorAll(".item").forEach(el => el.classList.remove("item_active"));
+          info.classList.add("item_active");
+          selectedType = item.type;
+          updateVideo(id, selectedType, src);
+      };
+
+      return info;
+  }
+
+  function updateVideo(id: number, type: string, src: HTMLIFrameElement) {
+      getData(`movie/${id}/videos?language=ru-RU`).then(res => {
+          let result = res.data.results.find((el: any) => el.type === type);
+          if (result) {
+              src.src = `https://www.youtube.com/embed/${result.key}`;
+          } else {
+              src.src = "";
+          }
+      });
+  }
+
+
+  getData(`movie/${id}/videos?language=ru-RU`).then(res => {
+      let result = res.data.results.find((el: any) => el.type === selectedType);
+      if (result) {
+          src.src = `https://www.youtube.com/embed/${result.key}`;
+      }
+      reload(res.data.results, Type, place);
+  });
+
+
 }
