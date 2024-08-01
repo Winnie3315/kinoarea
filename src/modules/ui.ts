@@ -42,6 +42,7 @@ export function reloadHeader(header: any) {
     searchBtn.classList.add('invisible');
     centerNav.classList.add('invisible');
     searchWrap.classList.remove('invisible');
+    searchWrap.style.zIndex = "10"
     document.body.style.overflowY = 'hidden';
   };
 
@@ -49,6 +50,7 @@ export function reloadHeader(header: any) {
     searchBtn.classList.remove('invisible');
     centerNav.classList.remove('invisible');
     searchWrap.classList.add('invisible');
+    searchWrap.style.zIndex = "-10"
     document.body.style.overflowY = 'visible';
   };
 

@@ -336,7 +336,10 @@
     
         .similar {
             margin-block: 60px;
-
+            .swiper-wrapper {
+                display: flex;
+                gap: 0px;
+            }
             & h1 {
                 font-size: 50px;
                 margin-bottom: 50px;
@@ -540,6 +543,7 @@
     .invisible {
         display: none;
         opacity: 0;
+        z-index: -10;
     }
     .cdx-cont{
         width: 90px;
@@ -588,7 +592,6 @@
     
     .search_wrap {
         position: absolute;
-        z-index: 10;
         top: 0;
         left: 0;
         height: 100vh;
@@ -1112,6 +1115,10 @@
     
         .similar {
             margin-block: 60px;
+            .swiper-wrapper {
+                display: flex;
+                gap: 60px;
+            }
 
             & h1 {
                 font-size: 50px;
@@ -1317,6 +1324,7 @@
     .invisible {
         display: none;
         opacity: 0;
+        z-index: -10;
     }
     .cdx-cont{
         width: 90px;
@@ -1365,7 +1373,6 @@
     
     .search_wrap {
         position: absolute;
-        z-index: 10;
         top: 0;
         left: 0;
         height: 100vh;
@@ -1891,7 +1898,10 @@
     
         .similar {
             margin-block: 60px;
-
+            .swiper-wrapper {
+                display: flex;
+                gap: 0px;
+            }
             & h1 {
                 font-size: 50px;
                 margin-bottom: 50px;
@@ -2096,6 +2106,7 @@
     .invisible {
         display: none;
         opacity: 0;
+        z-index: -10;
     }
     .cdx-cont{
         width: 90px;
@@ -2144,7 +2155,6 @@
     
     .search_wrap {
         position: absolute;
-        z-index: 10;
         top: 0;
         left: 0;
         height: 100vh;
@@ -2506,6 +2516,7 @@
     .wrap {
         width: 100%;
         margin: 0 auto;
+        padding: 0 20px;
         // background: aqua;
         .header {
             display: flex;
@@ -2717,14 +2728,14 @@
             margin-bottom: 50px;
     
             & h1 {
-                font-size: 50px;
+                font-size: 30px;
                 margin-bottom: 40px;
             }
     
             .in_role_grid {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 50px;
+                gap: 10px;
                 .role_item:last-child{
                     grid-column: 2/3;
                 }
@@ -2757,16 +2768,16 @@
         }
     
         .trailer_section {
-            margin-top: 50px;
+            margin-top: 20px;
     
             & h1 {
-                font-size:40px;
-                margin-bottom: 45px;
+                font-size:30px;
+                margin-bottom: 20px;
             }
     
              .trailer_box {
                 width: 100%;
-                height: 250px;
+                height: 145px;
     
                 & iframe {
                     height: auto;
@@ -2778,7 +2789,7 @@
     
             .trailer_name {
                 font-family: 'Qanelas Bold';
-                font-size: 44px;
+                font-size: 26px;
                 font-weight: 900;
                 margin-top: 20px;
                 margin-bottom: 30px;
@@ -2786,11 +2797,11 @@
         }
     
         .posters {
-            margin-top: 50px;
+            margin-top: 25px;
     
             & h1 {
-                font-size: 50px;
-                margin-bottom: 40px;
+                font-size: 30px;
+                margin-bottom: 20px;
             }
     
             .posters_box {
@@ -2801,7 +2812,7 @@
     
                 & img {
                     width: 100%;
-                    height: 290px;
+                    height: 220px;
                     border-radius: 10px;
                 }
             }
@@ -2811,8 +2822,8 @@
             margin-top: 65px;
     
             & h1 {
-                font-size: 50px;
-                margin-bottom: 50px;
+                font-size: 30px;
+                margin-bottom: 20px;
             }
     
             .images_gallery {
@@ -2845,8 +2856,8 @@
             margin-block: 60px;
 
             & h1 {
-                font-size: 50px;
-                margin-bottom: 50px;
+                font-size: 30px;
+                margin-bottom: 20px;
             }
     
             .similar_wrap {
@@ -3048,6 +3059,7 @@
     .invisible {
         display: none;
         opacity: 0;
+        z-index: -10;
     }
     .cdx-cont{
         width: 90px;
@@ -3096,7 +3108,6 @@
     
     .search_wrap {
         position: absolute;
-        z-index: 10;
         top: 0;
         left: 0;
         height: 100vh;
@@ -3291,12 +3302,12 @@
                 margin-bottom: 25px;
         
                 .movie_name_mobile {
-                    font-size: 50px;
+                    font-size: 32px;
                     margin-bottom: 5px;
                 }
         
                 .movie_name_orig_mobile {
-                    font-size: 25px;
+                    font-size: 20px;
                     font-family: 'Qanelas Thin';
                     margin-bottom: 20px;
                 }
@@ -3308,7 +3319,7 @@
                     
                 }
                 & img {
-                    width: 100%;
+                    width: 70%;
                     max-width: 370px;
                     border-radius: 10px;
                 }

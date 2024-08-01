@@ -20,7 +20,7 @@ export function Search(item: SearchItem){
     rateDiv.classList.add('res_movie_rate');
     rateText.classList.add('res_movie_rate_text');
 
-    link.href = `/movie/?id=${item.id}`;
+    link.href = `/pages/movie/?id=${item.id}`;
     img.src = item.poster_path ? `https://image.tmdb.org/t/p/original${item.poster_path}` : '/public/images/404poster.jpg';
     img.alt = '';
     rateText.innerHTML = item.vote_average.toFixed(1)

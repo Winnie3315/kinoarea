@@ -14,7 +14,7 @@ export function Trailer(item: TrailerItem, link: HTMLIFrameElement, mainName: HT
     picture.src = `https://image.tmdb.org/t/p/original${item.backdrop_path}`;
     picture.alt = item.title;
     tralerName.innerHTML = item.title;
-    play.src = "/public/images/play.svg"
+    play.src = "/images/play.svg"
 
     tralerItem.onclick = () => {
         getData(`movie/${item.id}/videos`)

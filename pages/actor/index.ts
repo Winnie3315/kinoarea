@@ -2,7 +2,7 @@ import { BackdropItem } from './../../src/Types';
 import { getData } from './../../src/modules/request';
 import { reload, reloadHeader, setSwiper } from './../../src/modules/ui'
 import { Movie } from "./../../src/components/movie"
-import { MovieCard } from './../../src/components/actor-film'
+import { MovieCard, MovieCardMobile } from './../../src/components/actor-film'
 import { ActorPhoto } from '../../src/components/actor-img';
 
 const id = location.search.split('=').at(-1)
@@ -37,6 +37,12 @@ getData(`person/${id}/movie_credits?language=ru-RU'`)
     .then(res => {
         setSwiper(res.data.cast, "swiper", Movie, best_movies_wrap, )
         reload(res.data.cast.slice(0, 20), MovieCard, cards)
+
+        if(innerWidth <= 768){
+            reload(res.data.cast.slice(0, 20), MovieCardMobile, cards)
+        } else{
+            reload(res.data.cast.slice(0, 20), MovieCard, cards)
+        }
     })
 
 getData(`person/${id}/images`)
