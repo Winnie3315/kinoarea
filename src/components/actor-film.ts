@@ -38,7 +38,7 @@ export function MovieCard(item: CardItem) {
     ratingValue.innerHTML = item.vote_average.toFixed(1);
     ratingSource.innerHTML = 'TMDb';
     button.innerHTML = 'Карточка фильма';
-    buttonLink.href = `/pages/movie/?id=${item.id}`;
+    buttonLink.href = `/movie/?id=${item.id}`;
 
     ratingItem.append(ratingValue, ratingSource);
     rating.append(ratingItem);

@@ -14,7 +14,7 @@ export function Stars(item: StarItem): HTMLElement{
 
     h3.innerHTML = item.name
     p.innerHTML = item.popularity.toString()
-    person.href = `/pages/actor/?id=${item.id}`
+    person.href = `/actor/?id=${item.id}`
 
     person.append(img, personInfo)
     personInfo.append(h3, p)

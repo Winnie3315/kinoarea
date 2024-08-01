@@ -14,7 +14,7 @@ export function Movie(item: MovieItem, backdrop: HTMLElement): HTMLElement {
     movie.classList.add("swiper-slide")
     average.classList.add('score');
 
-    movie.href = `/pages/movie/?id=${item.id}`;
+    movie.href = `/movie/?id=${item.id}`;
     moviePoster.src = `https://image.tmdb.org/t/p/original${item.poster_path}`;
     moviePoster.alt = item.title;
     average.innerHTML = item.vote_average.toFixed(1).toString()

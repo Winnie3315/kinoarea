@@ -15,7 +15,7 @@ export function InRole(item: RoleItem): HTMLElement {
     roleItem.classList.add('role_item');
     personName.classList.add('person_name');
     roleName.classList.add('role_name');
-    roleItem.href = `/pages/actor/?id=${item.id}`
+    roleItem.href = `/actor/?id=${item.id}`
 
     roleItem.append(img, personName, roleName);
 

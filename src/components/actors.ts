@@ -17,7 +17,7 @@ export function Actors(item: ActorItem): HTMLElement{
     h3.innerHTML = item.name
     p.innerHTML = item.popularity.toString()
     p1.innerHTML = `${top_place++} место`
-    actor.href = `/pages/actor/?id=${item.id}`
+    actor.href = `/actor/?id=${item.id}`
 
     actor.append(left, right)
     left.append(h3, p)

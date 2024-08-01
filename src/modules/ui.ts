@@ -211,14 +211,27 @@ export function setSwiper(arr = [], className = "", component: any, place: any, 
       prevEl: ".swiper-button-prev",
     },
     breakpoints: {
-      900: {
-        slidesPerView: 4,
-        spaceBetween: 15
+      320:{
+        slidesPerView: 1
+      },
+      490: {
+        slidesPerView: 1,
+        spaceBetween: 10
+      },
+      567:{
+        slidesPerView: 2, 
+        spaceBetween: 10
       },
       768:{
         slidesPerView: 2,
         spaceBetween: 15
       },
+      900: {
+        slidesPerView: 4,
+        spaceBetween: 15
+      }
+
+
 
     }
   });
@@ -254,7 +267,7 @@ export function reloadFooter(footer: HTMLElement) {
   form.name = "emailForm";
 
   let canSubmit = true;
-  const submitDelay = 600000000000000;
+  const submitDelay = 60000000;
 
   form.onsubmit = (e: any) => {
     e.preventDefault();
